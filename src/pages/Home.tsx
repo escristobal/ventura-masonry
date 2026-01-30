@@ -125,6 +125,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured Projects Section with Real Images */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -135,13 +136,17 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: 'Stone Patio Installation', category: 'Stone Work' },
-              { title: 'Custom Paver Driveway', category: 'Pavers' },
-              { title: 'Decorative Retaining Wall', category: 'Retaining Walls' },
+              { title: 'Stone Patio Installation', category: 'Stone Work', img: '/gallery/StonePatio.JPEG' },
+              { title: 'Custom Paver Driveway', category: 'Pavers', img: '/gallery/PaverDriveway.JPEG' },
+              { title: 'Decorative Retaining Wall', category: 'Retaining Walls', img: '/gallery/GardenRetainingWall.JPEG' },
             ].map((project, index) => (
               <div key={index} className="bg-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
-                <div className="aspect-[4/3] bg-gradient-to-br from-stone-400 to-stone-600 flex items-center justify-center">
-                  <p className="text-white text-lg font-semibold">Project Image {index + 1}</p>
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={project.img} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <div className="p-4 bg-white">
                   <h3 className="text-lg font-bold text-stone-800">{project.title}</h3>

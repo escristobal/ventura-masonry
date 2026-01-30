@@ -38,39 +38,12 @@ export default function Gallery() {
     { id: 16, title: 'Patio Paver System', category: 'Pavers', fullSrc: '/gallery/PatioPaver.JPEG', thumbSrc: '/gallery/thumbnails/PatioPaver.JPEG' },
 
     // --- Remaining Stone Veneer Series ---
-    { id: 17, title: 'Stone Veneer 3', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer3.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer3.JPEG' },
+    { id: 17, title: 'Residential Block Wall', category: 'Block Fence', fullSrc: '/gallery/BlockWall.JPEG', thumbSrc: '/gallery/thumbnails/BlockWall.JPEG' },
     { id: 18, title: 'Stone Veneer 4', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer4.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer4.JPEG' },
     { id: 19, title: 'Stone Veneer 5', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer5.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer5.JPEG' },
     { id: 20, title: 'Stone Veneer 6', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer6.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer6.JPEG' },
     { id: 21, title: 'Stone Veneer 7', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer7.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer7.JPEG' },
 ];
-
-
-  // const images: GalleryImage[] = [
-  //   { id: 1, title: 'Stone House Wall Veneer Installation', category: 'Stone Work', fullSrc: '/public/gallery/StoneVeneer.jpeg', thumbSrc: 'public/gallery/thumbnails/StoneVeneer.jpeg'},
-    // { id: 2, title: 'Pool Wall Stone Veneer', category: 'Stone Work', src: '/gallery/PoolWallStoneVeneer2.JPEG' },
-    // { id: 3, title: 'Stone Chimney', category: 'Stone Work', src: '/gallery/StoneChimney.JPEG' },
-    // { id: 4, title: 'Patio Paver', category: 'Pavers', src: '/gallery/PatioPaver.JPEG' },
-    // // { id: 5, title: 'Pool Wall Stone Veneer 2', category: 'Stone Work', src: '/gallery/PoolWallStoneVeneer2.JPEG' },
-    // { id: 5, title: 'Stone Veneer 1', category: 'Stone Work', src: '/gallery/StoneVeneer1.JPEG' },
-    // { id: 6, title: 'Stone Veneer 2', category: 'Stone Work', src: '/gallery/StoneVeneer2.JPEG' },
-    // { id: 7, title: 'Stone Veneer 3', category: 'Stone Work', src: '/gallery/StoneVeneer3.JPEG' },
-    // { id: 8, title: 'Stone Veneer 4', category: 'Stone Work', src: '/gallery/StoneVeneer4.JPEG' },
-    // { id: 9, title: 'Stone Veneer 5', category: 'Stone Work', src: '/gallery/StoneVeneer5.JPEG' },
-    // { id: 10, title: 'Stone Veneer 6', category: 'Stone Work', src: '/gallery/StoneVeneer6.JPEG' },
-
-    // { id: 2, title: 'Custom Paver Driveway', category: 'Pavers', src: '/gallery/PaverDriveway.jpeg' },
-    // { id: 3, title: 'Decorative Retaining Wall', category: 'Retaining Walls', src: '/gallery/RetainingWall.jpeg' },
-    // { id: 4, title: 'Block Fence Construction', category: 'Block Fence', src: '/gallery/BlockFence.jpeg' },
-    // { id: 5, title: 'Natural Stone Walkway', category: 'Stone Work', src: '/gallery/NaturalStoneWalkway.jpeg' },
-    // { id: 6, title: 'Paver Patio Design', category: 'Pavers', src: '/gallery/PaverPatio.jpeg' },
-    // { id: 7, title: 'Terraced Retaining Walls', category: 'Retaining Walls', src: '/gallery/TerracedWall.jpeg' },
-    // { id: 8, title: 'Stone Fire Pit', category: 'Stone Work', src: '/gallery/StoneFirePit.jpeg' },
-    // { id: 9, title: 'Commercial Paver Installation', category: 'Pavers', src: '/gallery/CommercialPaver.jpeg' },
-    // { id: 10, title: 'Residential Block Wall', category: 'Block Fence', src: '/gallery/BlockWall.jpeg' },
-    // { id: 11, title: 'Garden Retaining Wall', category: 'Retaining Walls', src: '/gallery/GardenWall.jpeg' },
-    // { id: 12, title: 'Stone Veneer Installation', category: 'Stone Work', src: '/gallery/StoneVeneer2.jpeg' },
-  // ];
 
   const openModal = (id: number) => setSelectedImage(id);
   const closeModal = () => setSelectedImage(null);

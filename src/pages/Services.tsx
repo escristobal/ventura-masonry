@@ -13,6 +13,7 @@ export default function Services() {
         'Stone fire pits and features',
         'Custom stone designs',
       ],
+      imageUrl: '/gallery/PoolWallStoneVeneer2.JPEG', 
     },
     {
       title: 'Pavers',
@@ -24,6 +25,7 @@ export default function Services() {
         'Paver repairs and restoration',
         'Custom paver patterns',
       ],
+      imageUrl: '/gallery/ComercialPaver.JPEG',
     },
     {
       title: 'Block Fence Construction',
@@ -35,6 +37,7 @@ export default function Services() {
         'Security fence construction',
         'Block fence repairs',
       ],
+      imageUrl: '/gallery/BlockWall.JPEG',
     },
     {
       title: 'Retaining Walls',
@@ -46,6 +49,7 @@ export default function Services() {
         'Erosion control solutions',
         'Drainage integration',
       ],
+      imageUrl: '/gallery/GardenRetainingWall.JPEG',
     },
   ];
 
@@ -71,9 +75,11 @@ export default function Services() {
                 } gap-8 items-center`}
               >
                 <div className="lg:w-1/2">
-                  <div className="bg-gradient-to-br from-stone-400 to-stone-600 rounded-lg aspect-[4/3] flex items-center justify-center shadow-lg">
-                    <p className="text-white text-xl font-semibold">{service.title} Image</p>
-                  </div>
+                  <img 
+                    src={service.imageUrl} 
+                    alt={service.title} 
+                    className="w-full h-80 object-cover rounded-lg shadow-lg"
+                  />
                 </div>
                 <div className="lg:w-1/2">
                   <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-4">
