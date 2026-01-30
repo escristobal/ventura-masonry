@@ -5,50 +5,89 @@ interface GalleryImage {
   id: number;
   title: string;
   category: string;
+  // Use the full size for the modal
+  fullSrc: string; 
+  // Use the optimized size for the grid
+  thumbSrc: string; 
 }
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images: GalleryImage[] = [
-    { id: 1, title: 'Stone Patio Installation', category: 'Stone Work' },
-    { id: 2, title: 'Custom Paver Driveway', category: 'Pavers' },
-    { id: 3, title: 'Decorative Retaining Wall', category: 'Retaining Walls' },
-    { id: 4, title: 'Block Fence Construction', category: 'Block Fence' },
-    { id: 5, title: 'Natural Stone Walkway', category: 'Stone Work' },
-    { id: 6, title: 'Paver Patio Design', category: 'Pavers' },
-    { id: 7, title: 'Terraced Retaining Walls', category: 'Retaining Walls' },
-    { id: 8, title: 'Stone Fire Pit', category: 'Stone Work' },
-    { id: 9, title: 'Commercial Paver Installation', category: 'Pavers' },
-    { id: 10, title: 'Residential Block Wall', category: 'Block Fence' },
-    { id: 11, title: 'Garden Retaining Wall', category: 'Retaining Walls' },
-    { id: 12, title: 'Stone Veneer Installation', category: 'Stone Work' },
-  ];
+    // --- Stone Veneer Series ---
+    { id: 1, title: 'Stone Veneer Installation', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer0.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer0.JPEG' },
+    { id: 2, title: 'Exterior Stone Veneer', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer1.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer1.JPEG' },
+    { id: 3, title: 'Luxury Stone Veneer', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer2.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer2.JPEG' },
 
-  const openModal = (id: number) => {
-    setSelectedImage(id);
-  };
+    // --- New Projects (Inserted here) ---
+    { id: 4, title: 'Commercial Paver Installation', category: 'Pavers', fullSrc: '/gallery/ComercialPaver.JPEG', thumbSrc: '/gallery/thumbnails/ComercialPaver.JPEG' },
+    { id: 5, title: 'Garden Retaining Wall', category: 'Retaining Walls', fullSrc: '/gallery/GardenRetainingWall.JPEG', thumbSrc: '/gallery/thumbnails/GardenRetainingWall.JPEG' },
+    { id: 6, title: 'Interior Stone Veneer', category: 'Stone Work', fullSrc: '/gallery/InteriorStoneVeneer.JPEG', thumbSrc: '/gallery/thumbnails/InteriorStoneVeneer.JPEG' },
+    { id: 7, title: 'Custom Paver Driveway', category: 'Pavers', fullSrc: '/gallery/PaverDriveway.JPEG', thumbSrc: '/gallery/thumbnails/PaverDriveway.JPEG' },
+    { id: 8, title: 'Residential Block Wall', category: 'Block Fence', fullSrc: '/gallery/ResidentialBlockWall.JPEG', thumbSrc: '/gallery/thumbnails/ResidentialBlockWall.JPEG' },
+    { id: 9, title: 'Structural Retaining Wall', category: 'Retaining Walls', fullSrc: '/gallery/RetainingWall.jpeg', thumbSrc: '/gallery/thumbnails/RetainingWall.jpeg' },
+    { id: 10, title: 'Stone Fire Pit', category: 'Stone Work', fullSrc: '/gallery/StoneFirePit.jpeg', thumbSrc: '/gallery/thumbnails/StoneFirePit.jpeg' },
+    { id: 11, title: 'Natural Stone Walkway', category: 'Stone Work', fullSrc: '/gallery/StoneWalkway.JPEG', thumbSrc: '/gallery/thumbnails/StoneWalkway.JPEG' },
+    { id: 12, title: 'Stone Patio Design', category: 'Pavers', fullSrc: '/gallery/StonePatio.JPEG', thumbSrc: '/gallery/thumbnails/StonePatio.JPEG' },
 
-  const closeModal = () => {
-    setSelectedImage(null);
-  };
+    // --- Pool & Specialty ---
+    { id: 13, title: 'Pool Wall Veneer', category: 'Stone Work', fullSrc: '/gallery/PoolWallStoneVeneer.JPEG', thumbSrc: '/gallery/thumbnails/PoolWallStoneVeneer.JPEG' },
+    { id: 14, title: 'Pool Wall Veneer Detail', category: 'Stone Work', fullSrc: '/gallery/PoolWallStoneVeneer2.JPEG', thumbSrc: '/gallery/thumbnails/PoolWallStoneVeneer2.JPEG' },
+    { id: 15, title: 'Stone Chimney', category: 'Stone Work', fullSrc: '/gallery/StoneChimney.JPEG', thumbSrc: '/gallery/thumbnails/StoneChimney.JPEG' },
+    { id: 16, title: 'Patio Paver System', category: 'Pavers', fullSrc: '/gallery/PatioPaver.JPEG', thumbSrc: '/gallery/thumbnails/PatioPaver.JPEG' },
+
+    // --- Remaining Stone Veneer Series ---
+    { id: 17, title: 'Stone Veneer 3', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer3.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer3.JPEG' },
+    { id: 18, title: 'Stone Veneer 4', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer4.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer4.JPEG' },
+    { id: 19, title: 'Stone Veneer 5', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer5.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer5.JPEG' },
+    { id: 20, title: 'Stone Veneer 6', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer6.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer6.JPEG' },
+    { id: 21, title: 'Stone Veneer 7', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer7.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer7.JPEG' },
+];
+
+
+  // const images: GalleryImage[] = [
+  //   { id: 1, title: 'Stone House Wall Veneer Installation', category: 'Stone Work', fullSrc: '/public/gallery/StoneVeneer.jpeg', thumbSrc: 'public/gallery/thumbnails/StoneVeneer.jpeg'},
+    // { id: 2, title: 'Pool Wall Stone Veneer', category: 'Stone Work', src: '/gallery/PoolWallStoneVeneer2.JPEG' },
+    // { id: 3, title: 'Stone Chimney', category: 'Stone Work', src: '/gallery/StoneChimney.JPEG' },
+    // { id: 4, title: 'Patio Paver', category: 'Pavers', src: '/gallery/PatioPaver.JPEG' },
+    // // { id: 5, title: 'Pool Wall Stone Veneer 2', category: 'Stone Work', src: '/gallery/PoolWallStoneVeneer2.JPEG' },
+    // { id: 5, title: 'Stone Veneer 1', category: 'Stone Work', src: '/gallery/StoneVeneer1.JPEG' },
+    // { id: 6, title: 'Stone Veneer 2', category: 'Stone Work', src: '/gallery/StoneVeneer2.JPEG' },
+    // { id: 7, title: 'Stone Veneer 3', category: 'Stone Work', src: '/gallery/StoneVeneer3.JPEG' },
+    // { id: 8, title: 'Stone Veneer 4', category: 'Stone Work', src: '/gallery/StoneVeneer4.JPEG' },
+    // { id: 9, title: 'Stone Veneer 5', category: 'Stone Work', src: '/gallery/StoneVeneer5.JPEG' },
+    // { id: 10, title: 'Stone Veneer 6', category: 'Stone Work', src: '/gallery/StoneVeneer6.JPEG' },
+
+    // { id: 2, title: 'Custom Paver Driveway', category: 'Pavers', src: '/gallery/PaverDriveway.jpeg' },
+    // { id: 3, title: 'Decorative Retaining Wall', category: 'Retaining Walls', src: '/gallery/RetainingWall.jpeg' },
+    // { id: 4, title: 'Block Fence Construction', category: 'Block Fence', src: '/gallery/BlockFence.jpeg' },
+    // { id: 5, title: 'Natural Stone Walkway', category: 'Stone Work', src: '/gallery/NaturalStoneWalkway.jpeg' },
+    // { id: 6, title: 'Paver Patio Design', category: 'Pavers', src: '/gallery/PaverPatio.jpeg' },
+    // { id: 7, title: 'Terraced Retaining Walls', category: 'Retaining Walls', src: '/gallery/TerracedWall.jpeg' },
+    // { id: 8, title: 'Stone Fire Pit', category: 'Stone Work', src: '/gallery/StoneFirePit.jpeg' },
+    // { id: 9, title: 'Commercial Paver Installation', category: 'Pavers', src: '/gallery/CommercialPaver.jpeg' },
+    // { id: 10, title: 'Residential Block Wall', category: 'Block Fence', src: '/gallery/BlockWall.jpeg' },
+    // { id: 11, title: 'Garden Retaining Wall', category: 'Retaining Walls', src: '/gallery/GardenWall.jpeg' },
+    // { id: 12, title: 'Stone Veneer Installation', category: 'Stone Work', src: '/gallery/StoneVeneer2.jpeg' },
+  // ];
+
+  const openModal = (id: number) => setSelectedImage(id);
+  const closeModal = () => setSelectedImage(null);
 
   const goToPrevious = () => {
-    if (selectedImage && selectedImage > 1) {
-      setSelectedImage(selectedImage - 1);
-    }
+    if (selectedImage && selectedImage > 1) setSelectedImage(selectedImage - 1);
   };
 
   const goToNext = () => {
-    if (selectedImage && selectedImage < images.length) {
-      setSelectedImage(selectedImage + 1);
-    }
+    if (selectedImage && selectedImage < images.length) setSelectedImage(selectedImage + 1);
   };
 
   const selectedImageData = images.find((img) => img.id === selectedImage);
 
   return (
     <div className="bg-gray-50">
+      {/* Header Section */}
       <section className="bg-gradient-to-r from-stone-800 to-stone-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Project Gallery</h1>
@@ -58,6 +97,7 @@ export default function Gallery() {
         </div>
       </section>
 
+      {/* Gallery Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -65,26 +105,22 @@ export default function Gallery() {
               <button
                 key={image.id}
                 onClick={() => openModal(image.id)}
-                className="group relative bg-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer"
               >
-                <div className="aspect-square bg-gradient-to-br from-stone-400 to-stone-600 flex items-center justify-center">
-                  <p className="text-white text-sm font-semibold">Project {image.id}</p>
-                </div>
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 font-semibold">
-                    View Image
-                  </span>
-                </div>
-                <div className="p-4 bg-white">
-                  <h3 className="text-sm font-semibold text-stone-800">{image.title}</h3>
-                  <p className="text-xs text-gray-600">{image.category}</p>
-                </div>
+                <img
+                  src={image.thumbSrc} // <-- Use the THUMBNAIL source here
+                  alt={image.title}
+                  loading="lazy"
+                  className="w-full aspect-square object-cover group-hover:scale-105 transition-transform bg-stone-200"
+                />
+                {/* ... overlay code ... */}
               </button>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Modal */}
       {selectedImage && selectedImageData && (
         <div
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
@@ -99,38 +135,27 @@ export default function Gallery() {
           </button>
 
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              goToPrevious();
-            }}
+            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
             disabled={selectedImage === 1}
             className="absolute left-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Previous image"
           >
             <ChevronLeft size={48} />
           </button>
 
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              goToNext();
-            }}
+            onClick={(e) => { e.stopPropagation(); goToNext(); }}
             disabled={selectedImage === images.length}
             className="absolute right-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Next image"
           >
             <ChevronRight size={48} />
           </button>
 
-          <div
-            className="max-w-5xl w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="bg-gradient-to-br from-stone-400 to-stone-600 rounded-lg aspect-video flex items-center justify-center mb-4">
-              <p className="text-white text-2xl font-semibold">
-                Project {selectedImage}
-              </p>
-            </div>
+          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selectedImageData.fullSrc} // <-- Use the FULL source here
+              alt={selectedImageData.title}
+              className="w-full max-h-[90vh] rounded-lg mb-4 object-contain"
+            />
             <div className="bg-white rounded-lg p-4">
               <h3 className="text-xl font-bold text-stone-800">{selectedImageData.title}</h3>
               <p className="text-gray-600">{selectedImageData.category}</p>
@@ -139,6 +164,7 @@ export default function Gallery() {
         </div>
       )}
 
+      {/* Call to Action */}
       <section className="py-16 bg-amber-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
