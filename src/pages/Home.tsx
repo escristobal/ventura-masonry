@@ -63,11 +63,6 @@ export default function Home() {
                 Contact Us
               </Link>
             </div>
-            <div className="mt-8 text-2xl font-semibold">
-              <a href="tel:509-792-9059" className="hover:text-amber-400 transition-colors">
-                509-792-9059
-              </a>
-            </div>
           </div>
         </div>
       </section>
