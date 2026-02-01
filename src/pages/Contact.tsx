@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,7 +11,19 @@ export default function Contact() {
   });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  console.log(
+    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+  );
+
+
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.contact || !formData.message) {
@@ -17,13 +31,30 @@ export default function Contact() {
       return;
     }
 
-    setSubmitStatus('success');
-    setFormData({ name: '', contact: '', message: '' });
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          name: formData.name,
+          contact: formData.contact,
+          message: formData.message,
+        },
+        PUBLIC_KEY
+      );
 
-    setTimeout(() => {
-      setSubmitStatus('idle');
-    }, 5000);
+      setSubmitStatus('success');
+      setFormData({ name: '', contact: '', message: '' });
+
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setSubmitStatus('error');
+    }
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -191,6 +222,13 @@ export default function Contact() {
                   >
                     Send Message
                   </button>
+
+                  {submitStatus === 'success' && (
+                    <p className="text-green-600 font-medium">Message sent successfully!</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-red-600 font-medium">Something went wrong. Please try again.</p>
+                  )}
 
                   <p className="text-sm text-gray-600 text-center">
                     Or call us directly at{' '}
