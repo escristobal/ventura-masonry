@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# Ventura Masonry Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the **Ventura Masonry LLC** website.  
+The site is built as a small business portfolio to showcase completed masonry projects and allow customers to contact the business directly.
 
-Currently, two official plugins are available:
+This project is intended for **internal use and maintenance**, not as a public open-source library.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Purpose
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The website was created to:
+- Display masonry and hardscape work through an image gallery
+- Provide business contact information in one place
+- Allow customers to submit inquiries through a contact form
+- Serve as the official online presence for Ventura Masonry LLC
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- EmailJS (contact form email delivery)
+- Vercel (deployment)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Features
+
+- Image gallery with modal view
+- Contact form with automated email delivery
+- Responsive design for mobile and desktop
+- Click-to-call phone links
+- Easily updatable images and content
+
+---
+
+## Project Structure
+
+```text
+ventura-masonry/
+├─ public/
+│  └─ gallery/           # Gallery images
+├─ src/
+│  ├─ components/        # React components
+│  ├─ App.tsx            # Main app component
+│  ├─ main.tsx           # Application entry point
+├─ index.html
+├─ package.json
+├─ tsconfig.json
+└─ vite.config.ts
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Environment Variables
+
+To send emails from the contact form, add a `.env` file in the root:
+```bash
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+
 ```
+
+Important:
+* The .env file must remain private
+* Do not commit it to GitHub
+* Add .env to .gitignore
+* These same values must be added in your deployment platform’s environment settings
+
+---
+
+## Installation
+
+1. Clone the repo:
+
+```bash
+
+> git clone https://github.com/<your-username>/ventura-masonry.git
+> cd ventura-masonry
+```
+
+Start the development server:
+```bash
+> npm run dev
+```
+
+Open http://localhost:5173 in your browser.
+
+---
+
+## Development notes
+
+* Images must be placed in public/gallery
+* Restart the dev server after modifying environment variables
+* Pushing changes to the main branch triggers automatic redeployment on Vercel
+
+---
+
+## Maintenance
+This project is maintained to support the Ventura Masonry business website.
+Most updates involve changing images, text content, or contact details rather than application logic.
+
