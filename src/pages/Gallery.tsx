@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, Phone } from 'lucide-react';
+import { useParams, useNavigate } from "react-router-dom";
 
 interface GalleryImage {
   id: number;
@@ -12,6 +13,8 @@ interface GalleryImage {
 }
 
 export default function Gallery() {
+  const { imageId } = useParams();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images: GalleryImage[] = [
@@ -45,97 +48,101 @@ export default function Gallery() {
     { id: 21, title: 'Stone Veneer 7', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer7.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer7.JPEG' },
 ];
 
-  const openModal = (id: number) => setSelectedImage(id);
-  const closeModal = () => setSelectedImage(null);
+  // 🔥 Open modal automatically if URL has :imageId
+    useEffect(() => {
+      if (imageId) {
+        const id = Number(imageId);
+        if (!isNaN(id)) {
+          setSelectedImage(id);
+        }
+      } else {
+        setSelectedImage(null);
+      }
+    }, [imageId]);
 
-  const goToPrevious = () => {
-    if (selectedImage && selectedImage > 1) setSelectedImage(selectedImage - 1);
-  };
+    const openModal = (id: number) => {
+      navigate(`/gallery/${id}`);
+    };
 
-  const goToNext = () => {
-    if (selectedImage && selectedImage < images.length) setSelectedImage(selectedImage + 1);
-  };
+    const closeModal = () => {
+      navigate('/gallery');
+    };
 
-  const selectedImageData = images.find((img) => img.id === selectedImage);
+    const goToPrevious = () => {
+      if (selectedImage && selectedImage > 1) {
+        navigate(`/gallery/${selectedImage - 1}`);
+      }
+    };
 
-  return (
-    <div className="bg-gray-50">
-      {/* Header Section */}
-      <section className="bg-gradient-to-r from-stone-800 to-stone-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Project Gallery</h1>
-          <p className="text-xl text-stone-200">
-            Browse our portfolio of completed masonry and hardscape projects.
-          </p>
-        </div>
-      </section>
+    const goToNext = () => {
+      if (selectedImage && selectedImage < images.length) {
+        navigate(`/gallery/${selectedImage + 1}`);
+      }
+    };
 
-      {/* Gallery Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {images.map((image) => (
-              <button
-                key={image.id}
-                onClick={() => openModal(image.id)}
-                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer"
-              >
-                <img
-                  src={image.thumbSrc} // <-- Use the THUMBNAIL source here
-                  alt={image.title}
-                  loading="lazy"
-                  className="w-full aspect-square object-cover group-hover:scale-105 transition-transform bg-stone-200"
-                />
-                {/* ... overlay code ... */}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+    const selectedImageData = images.find(img => img.id === selectedImage);
 
-      {/* Modal */}
-      {selectedImage && selectedImageData && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-          onClick={closeModal}
-        >
-          <button
-            onClick={closeModal}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
-            aria-label="Close modal"
-          >
-            <X size={32} />
-          </button>
+    return (
+      <div className="bg-gray-50">
 
-          <button
-            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-            disabled={selectedImage === 1}
-            className="absolute left-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft size={48} />
-          </button>
-
-          <button
-            onClick={(e) => { e.stopPropagation(); goToNext(); }}
-            disabled={selectedImage === images.length}
-            className="absolute right-4 text-white hover:text-gray-300 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronRight size={48} />
-          </button>
-
-          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={selectedImageData.fullSrc} // <-- Use the FULL source here
-              alt={selectedImageData.title}
-              className="w-full max-h-[90vh] rounded-lg mb-4 object-contain"
-            />
-            <div className="bg-white rounded-lg p-4">
-              <h3 className="text-xl font-bold text-stone-800">{selectedImageData.title}</h3>
-              <p className="text-gray-600">{selectedImageData.category}</p>
+        {/* Gallery Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {images.map(image => (
+                <button
+                  key={image.id}
+                  onClick={() => openModal(image.id)}
+                  className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                >
+                  <img
+                    src={image.thumbSrc}
+                    alt={image.title}
+                    className="w-full aspect-square object-cover group-hover:scale-105 transition-transform"
+                  />
+                </button>
+              ))}
             </div>
           </div>
-        </div>
-      )}
+        </section>
+
+        {/* Modal */}
+        {selectedImage && selectedImageData && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+            onClick={closeModal}
+          >
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-white"
+            >
+              <X size={32} />
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+              className="absolute left-4 text-white"
+            >
+              <ChevronLeft size={48} />
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); goToNext(); }}
+              className="absolute right-4 text-white"
+            >
+              <ChevronRight size={48} />
+            </button>
+
+            <div onClick={(e) => e.stopPropagation()}>
+              <img
+                src={selectedImageData.fullSrc}
+                alt={selectedImageData.title}
+                className="max-h-[90vh] rounded-lg"
+              />
+            </div>
+          </div>
+        )}
+  
 
       {/* Call to Action */}
       <section className="py-16 bg-amber-600 text-white">
