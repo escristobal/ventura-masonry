@@ -133,12 +133,17 @@ export default function Gallery() {
               <ChevronRight size={48} />
             </button>
 
-            <div onClick={(e) => e.stopPropagation()}>
+            <div onClick={(e) => e.stopPropagation()} className="text-center">
               <img
                 src={selectedImageData.fullSrc}
                 alt={selectedImageData.title}
-                className="max-h-[90vh] rounded-lg"
+                className="max-h-[90vh] rounded-lg mx-auto"
               />
+
+              <div className="bg-white rounded-lg p-4 mt-4 max-w-xl mx-auto">
+                <h3 className="text-xl font-bold text-stone-800">{selectedImageData.title}</h3>
+                <p className="text-gray-600">{selectedImageData.category}</p>
+              </div>
             </div>
           </div>
         )}
