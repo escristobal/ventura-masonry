@@ -46,6 +46,9 @@ export default function Gallery() {
     { id: 19, title: 'Stone Veneer 5', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer5.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer5.JPEG' },
     { id: 20, title: 'Stone Veneer 6', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer6.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer6.JPEG' },
     { id: 21, title: 'Stone Veneer 7', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer7.JPEG', thumbSrc: '/gallery/thumbnails/StoneVeneer7.JPEG' },
+    { id: 22, title: 'Stone Veneer Detail', category: 'Stone Work', fullSrc: '/gallery/StoneVeneer8.png', thumbSrc: '/gallery/thumbnails/StoneVeneer8.png' },
+    { id: 23, title: 'Column Veneer Installation', category: 'Stone Work', fullSrc: '/gallery/ColumnVeneer.png', thumbSrc: '/gallery/thumbnails/ColumnVeneer.png' },
+
 ];
 
   // 🔥 Open modal automatically if URL has :imageId
