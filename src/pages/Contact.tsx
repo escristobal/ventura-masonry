@@ -2,6 +2,12 @@ import { useState, type FormEvent } from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -32,23 +38,23 @@ export default function Contact() {
     }
 
     try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          name: formData.name,
-          contact: formData.contact,
-          message: formData.message,
-        },
-        PUBLIC_KEY
-      );
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        name: formData.name,
+        contact: formData.contact,
+        message: formData.message,
+      }, PUBLIC_KEY);
+
+      // ✅ Fire conversion AFTER successful form submit
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-17923985639/UPzbCPm94IAcEOeh6eJC'
+        });
+      }
 
       setSubmitStatus('success');
       setFormData({ name: '', contact: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
 
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
     } catch (error) {
       console.error('EmailJS error:', error);
       setSubmitStatus('error');
